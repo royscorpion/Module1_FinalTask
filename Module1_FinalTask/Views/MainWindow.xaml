@@ -1,0 +1,76 @@
+﻿<Window x:Class="Module1_FinalTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Module1_FinalTask"
+        xmlns:vm="clr-namespace:Module1_FinalTask.ViewModels"
+        mc:Ignorable="d"
+        Title="Калькулятор" Height="500" Width="350" Icon="Data/calculator.ico"  
+        MinWidth="350" MinHeight="450">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="buttonStyle">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border>
+                                <Rectangle x:Name="rect" RadiusX="5" RadiusY="5" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding Foreground}" Margin="1"/>
+                            </Border>
+                            <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="LightGray"/>
+                                <Setter Property="Foreground" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="actionKeyStyle" BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Background" Value="Gray"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FFE2F3EC"  MinWidth="320" MinHeight="300" Margin="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding Path=LastCalc}"  FontSize="16"  Padding="3" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="3"/>
+        <TextBlock Grid.Row="1" Text="{Binding Path=Result}" FontSize="32"  Padding="10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="3" TextTrimming="WordEllipsis"/>
+        <UniformGrid Grid.Row="2" Rows="6" Columns="4" Margin="3" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <Button Content="%" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=CalcCommand}" CommandParameter="%" />
+            <Button Content="CE" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="CE"/>
+            <Button Content="C" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=ClearCommand}" />
+            <Button Content="Ü" FontFamily="Symbol" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="back"/>
+            <Button Content="1/x" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=CalcCommand}" CommandParameter="1/x"/>
+            <Button Content="x²" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=CalcCommand}" CommandParameter="x²"/>
+            <Button Content="√x" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=CalcCommand}" CommandParameter="√x"/>
+            <Button Content="÷" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=AriphCommand}" CommandParameter="÷" />
+            <Button Content="7" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="7"/>
+            <Button Content="8" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="8" />
+            <Button Content="9" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="9" />
+            <Button Content="×" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=AriphCommand}" CommandParameter="×" />
+            <Button Content="4" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="4" />
+            <Button Content="5" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="5" />
+            <Button Content="6" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="6" />
+            <Button Content="-" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=AriphCommand}" CommandParameter="-" />
+            <Button Content="1" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="1" />
+            <Button Content="2" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="2" />
+            <Button Content="3" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="3" />
+            <Button Content="+" Style="{StaticResource actionKeyStyle}" Command="{Binding Path=AriphCommand}" CommandParameter="+" />
+            <Button Content="+/-" Style="{StaticResource buttonStyle}" Command="{Binding Path=CalcCommand}" CommandParameter="+/-"/>
+            <Button Content="0" Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="0" />
+            <Button Content="," Style="{StaticResource buttonStyle}" Command="{Binding Path=NumberCommand}" CommandParameter="," />
+            <Button Content="=" Style="{StaticResource buttonStyle}" Background="SkyBlue" Command="{Binding Path=AriphCommand}" CommandParameter="="/>
+        </UniformGrid>
+    </Grid>
+</Window>
