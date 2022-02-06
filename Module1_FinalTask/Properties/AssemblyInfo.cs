@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Module1_FinalTask")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCopyright("Copyright ©  2022 Roy Scorpion")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
